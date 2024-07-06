@@ -1,13 +1,27 @@
-#include <Windows.h>
 #include <stdio.h>
-#include <conio.h>
 
 int main(void)
 {
-    int keyboardInput;
-    while(1)
+    unsigned long long input; 
+    char mask = 1;
+    int cnt = 0;
+
+    scanf("%ull", &input);
+
+    for (int i = 0; i < 40; ++i)
     {
-        keyboardInput = _getch();
-        printf("%d\n", keyboardInput);
+        cnt += (input & mask); 
+        input >>= 1;
     }
+
+    if (cnt != 1)
+    {
+        printf("0\n");
+    }
+    else
+    {
+        printf("1\n");
+    }
+
+    return 0;
 }
