@@ -1,19 +1,8 @@
 #include <Windows.h>
 #include <conio.h>
 #include <stdio.h>
-
-#define MapSizeX    15
-#define MapSizeY    20 
-
-void gotoXY(int x, int y)
-{
-    COORD Cur;
-    Cur.X = x;
-    Cur.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
-}
-
-COORD drawStartPoint = {40, 10};
+#include "MapTest.h"
+#include "ConsoleCursorTest.h"
 
 char Map[MapSizeY][MapSizeX] =
 {
@@ -40,8 +29,10 @@ char Map[MapSizeY][MapSizeX] =
     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+
 void DrawMap()
 {
+    COORD drawStartPoint = {40, 10};
     for (int dy = 0; dy < MapSizeY; ++dy)
     {
         for (int dx = 0; dx < MapSizeX; ++dx)
@@ -62,15 +53,4 @@ void DrawMap()
             }
         }
     }
-}
-
-
-int main(void)
-{
-    system("cls");
-    gotoXY(drawStartPoint.X, drawStartPoint.Y);
-
-    DrawMap();
-    
-    return 0;
 }

@@ -1,14 +1,8 @@
-#include <Windows.h>
 #include <conio.h>
 #include <stdio.h>
-
-void gotoXY(int x, int y)
-{
-    COORD Cur;
-    Cur.X = x;
-    Cur.Y = y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
-}
+#include <Windows.h>
+#include "BlockTest.h"
+#include "ConsoleCursorTest.h"
 
 // 5 types of block
 // 4 types of rotation for each block
@@ -152,13 +146,10 @@ char blockInfo[5][4][4][4] =
     }
 };
 
-COORD drawStartPoint = {40, 10};
 
-int main(void)
+void drawBlockTest()
 {
-    system("cls");
-    gotoXY(drawStartPoint.X, drawStartPoint.Y);
-
+    COORD drawStartPoint = {40, 10};
     while (1)
     {
         int blockType;
@@ -168,7 +159,7 @@ int main(void)
 
         if (blockType == 'A' - '0')
         {
-            return 0;
+            return;
         }
 
         for (int dy = 0; dy < 4; ++dy)
@@ -191,7 +182,4 @@ int main(void)
             }
         }
     }
-
-    
-    return 0;
 }
