@@ -1,6 +1,8 @@
+#include <time.h>
 #include <conio.h>
 #include <stdio.h>
 #include <Windows.h>
+#include "MapTest.h"
 #include "BlockTest.h"
 #include "ConsoleCursorTest.h"
 
@@ -181,5 +183,42 @@ void drawBlockTest()
                 
             }
         }
+    }
+}
+
+extern char Map[MapSizeY][MapSizeX];
+
+void DropBlockTest()
+{
+    COORD drawStartPoint = {40,10};
+    while (1)
+    {
+        clock_t start_time = clock();
+
+        while (clock() - start_time < 1000)
+        {
+            // DrawMap();            
+            for (int dy = 0; dy < MapSizeY; ++dy)
+                {
+                    for (int dx = 0; dx < MapSizeX; ++dx)
+                    {
+                        int consoleX = drawStartPoint.X + dx;
+                        int consoleY = drawStartPoint.Y + dy;
+
+                        gotoXY(consoleX, consoleY);
+
+                        switch (Map[dy][dx])
+                        {
+                            case 0:
+                                printf("  ");
+                                break;
+                            case 1:
+                                printf("бс");
+                                break;
+                        }
+                    }
+                }
+        }
+        // drop algorithm
     }
 }
